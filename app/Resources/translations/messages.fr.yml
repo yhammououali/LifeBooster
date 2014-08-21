@@ -1,0 +1,21 @@
+navbar:
+  home: Accueil
+  teacher: Professeurs
+  homework: Devoirs
+
+general:
+  civility.mr: Monsieur
+  civility.mrs: Madame
+  create: Créer
+  show: Voir
+  edit: Éditer
+  actions: Actions
+  createdAt: Créé le
+  updatedAt: Mis à jour le
+
+teacher:
+  firstName: Prénom
+  lastName: Nom de famille
+  phone: Téléphone
+  civility: Civilité
+  email: Email

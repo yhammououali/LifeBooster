@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr" class="no-js">
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Bienvenue !{% endblock %} - LifeBooster</title>
+        <meta content="width=device-width, initial-scale=1" name="viewport"/>
+        <meta content="" name="description"/>
+        <meta content="" name="author"/>
+
+        <link href="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css"/>
+        <link href="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
+        <link href="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css') }}" rel="stylesheet" type="text/css"/>
+        <link href="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/uniform/css/uniform.default.css') }}" rel="stylesheet" type="text/css"/>
+        <link href="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.css') }}" rel="stylesheet"/>
+        <link href="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/ion.rangeslider/css/ion.rangeSlider.css') }}" rel="stylesheet" type="text/css"/>
+        <link href="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/ion.rangeslider/css/ion.rangeSlider.Metronic.css') }}" rel="stylesheet" type="text/css"/>
+        <link href="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css') }}" rel="stylesheet" type="text/css"/>
+        <link href="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/fullcalendar/fullcalendar/fullcalendar.css') }}" rel="stylesheet" type="text/css"/>
+        <link href="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/jqvmap/jqvmap/jqvmap.css') }}" rel="stylesheet" type="text/css"/>
+        <link href="{{ asset('bundles/metronic_v3.0/metronic/assets/admin/pages/css/tasks.css') }}" rel="stylesheet" type="text/css"/>
+        <link href="{{ asset('bundles/metronic_v3.0/metronic/assets/global/css/components.css') }}" rel="stylesheet" type="text/css"/>
+        <link href="{{ asset('bundles/metronic_v3.0/metronic/assets/global/css/plugins.css') }}" rel="stylesheet" type="text/css"/>
+        <link href="{{ asset('bundles/metronic_v3.0/metronic/assets/admin/layout/css/layout.css') }}" rel="stylesheet" type="text/css"/>
+        <link href="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/nouislider/jquery.nouislider.css') }}" rel="stylesheet" type="text/css"/>
+        <link href="{{ asset('bundles/metronic_v3.0/metronic/assets/admin/layout/css/custom.css') }}" rel="stylesheet" type="text/css"/>
+        <link href="{{ asset('bundles/metronic_v3.0/metronic/assets/admin/layout/css/themes/default.css') }}" rel="stylesheet" type="text/css"/>
+        <link href="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/simple-line-icons/simple-line-icons.css') }}" rel="stylesheet" type="text/css"/>
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>
+    
+        <link rel="icon" type="image/x-icon" href="{{ asset('img/favicon.ico') }}" />
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        <!-- BEGIN HEADER -->
+        <div class="page-header navbar navbar-inverse">
+            <!-- BEGIN HEADER INNER -->
+            <div class="page-header-inner">
+                <!-- BEGIN CONTAINER FLUID -->
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="{{ path('lifebooster_front_default_index') }}"><img class="logo-default" alt="logo" src="{{ asset('img/logo_white.png') }}"></a>
+                    <a href="javascript:;" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <img src="{{ asset('bundles/metronic_v3.0/metronic/assets/admin/layout/img/menu-toggler.png') }}" alt="" />
+                    </a>
+                </div>
+                <!-- END CONTAINER FLUID -->
+            </div>
+            <!-- END HEADER INNER -->
+        </div>
+        <!-- END HEADER -->
+        <div class="clearfix">
+        </div>
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <nav>
+                <!-- BEGIN SIDEBAR -->
+                <div class="page-sidebar-wrapper">
+                    <div class="page-sidebar navbar-collapse collapse">
+                        {{ knp_menu_render('LifeBoosterFrontBundle:Builder:mainMenu', {'currentClass': 'active'}) }}
+                    </div>
+                </div>
+                <!-- END SIDEBAR -->
+            </nav>
+            <!-- BEGIN PAGE -->
+            <div class="page-content-wrapper">
+                <div class="page-content">
+                    <div class="container-fluid">
+                        {% for flashMessage in app.session.flashbag.get('info') %}
+                            <div class="alert alert-success">
+                                <button type="button" class="close" data-dismiss="alert"></button>
+                                {{ flashMessage|trans }}
+                            </div>
+                        {% endfor %}
+                        {% for flashMessage in app.session.flashbag.get('error') %}
+                            <div class="alert alert-danger">
+                                <button type="button" class="close" data-dismiss="alert"></button>
+                                {{ flashMessage|trans }}
+                            </div>
+                        {% endfor %}
+
+                        <div id="action">
+                            {% block action %}
+                            {% endblock %}
+                        </div>
+                        <br/>
+
+                        <div id="content">
+                            {% block body %}{% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END PAGE -->
+
+        <!-- BEGIN FOOTER -->
+        <div class="page-footer">
+            <div class="page-footer-inner">
+                 © 2014 LifeBooster
+            </div>
+            <div class="page-footer-tools">
+                <span class="go-top">
+                <i class="fa fa-angle-up"></i>
+                </span>
+            </div>
+        </div>
+        <!-- END FOOTER -->
+        <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+        <!-- BEGIN CORE PLUGINS -->
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/jquery-1.11.0.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/custom.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/jquery-migrate-1.2.1.min.js') }}" type="text/javascript"></script>
+        <!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/jquery.input-ip-address-control-1.0.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/bootstrap-pwstrength/pwstrength-bootstrap.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/jquery-tags-input/jquery.tagsinput.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/bootstrap-touchspin/bootstrap.touchspin.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/typeahead/handlebars.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/typeahead/typeahead.bundle.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/ckeditor/ckeditor.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/fuelux/js/spinner.min.js')}}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js')}}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js')}}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/jquery.input-ip-address-control-1.0.min.js')}}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/bootstrap-pwstrength/pwstrength-bootstrap.min.js')}}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js')}}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/jquery-tags-input/jquery.tagsinput.min.js')}}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js')}}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/bootstrap-touchspin/bootstrap.touchspin.js')}}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/jquery.blockui.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/jquery.cokie.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/uniform/jquery.uniform.min.js') }}" type="text/javascript"></script>
+        <!-- END CORE PLUGINS -->
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/flot/jquery.flot.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/flot/jquery.flot.resize.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/flot/jquery.flot.categories.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/jquery.pulsate.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/bootstrap-daterangepicker/moment.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.js') }}" type="text/javascript"></script>
+        <!-- IMPORTANT! fullcalendar depends on jquery-ui-1.10.3.custom.min.js for drag & drop support -->
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/fullcalendar/fullcalendar/fullcalendar.min.js') }}" type="text/javascript"></script>
+        <!-- <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.js') }}" type="text/javascript"></script> -- >
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/jquery.sparkline.min.js') }}" type="text/javascript"></script>
+        <!-- END PAGE LEVEL PLUGINS -->
+        <!-- BEGIN PAGE LEVEL SCRIPTS -->
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/scripts/metronic.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/admin/layout/scripts/layout.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/admin/pages/scripts/index.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/ion.rangeslider/js/ion-rangeSlider/ion.rangeSlider.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/global/plugins/nouislider/jquery.nouislider.min.js')}}"></script>
+        <script src="{{ asset('bundles/metronic_v3.0/metronic/assets/admin/pages/scripts/components-jqueryui-sliders.js')}}"></script>
+        <!-- END PAGE LEVEL SCRIPTS -->
+        
+        <script>
+        jQuery(document).ready(function() {
+           Metronic.init(); // init metronic core componets
+           Layout.init(); // init layout
+        });
+        </script>
+        <!-- END JAVASCRIPTS -->
+        {% block javascripts %}{% endblock %}
+        <script>
+            {% if app.request.cookies.has('sidebar') and app.request.cookies.get('sidebar') == 1 %}$(".page-sidebar-menu").addClass("page-sidebar-menu-closed"){% endif %}
+        </script>
+    </body>
+</html>

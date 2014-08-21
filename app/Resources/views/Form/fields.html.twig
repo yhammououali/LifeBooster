@@ -1,0 +1,29 @@
+{% extends 'form_div_layout.html.twig' %}
+
+{% block form_errors %}
+	{% if errors|length > 0 %}
+	<div class="form-group">
+		<div class="col-md-offset-3 col-md-4">
+			<div class="note note-danger">
+      			{{ parent() }}
+    		</div>		
+		</div>
+    </div>
+  	{% endif %}
+{% endblock form_errors %}
+
+{% block form_label -%}
+    {% if label is not sameas(false) -%}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' col-md-3 control-label')|trim}) %}
+        {% if not compound -%}
+            {% set label_attr = label_attr|merge({'for': id}) %}
+        {%- endif %}
+        {% if required -%}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+        {%- endif %}
+        {% if label is empty -%}
+            {% set label = name|humanize %}
+        {%- endif -%}
+        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</label>
+    {%- endif %}
+{%- endblock form_label %}

@@ -1,0 +1,47 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}
+	{{ 'navbar.teacher'|trans }}
+{% endblock %}
+
+{% block action %}
+	<a class="btn blue" href="{{ path('lifebooster_front_teacher_edit', {'id' : teacher.id }) }}"><i class="fa fa-edit"></i> {{ 'general.edit'|trans }}</a>
+{% endblock %}
+
+{% block body %}
+	<table class="table table-striped">
+		<tbody>
+			<tr>
+				<td>{{'teacher.civility'|trans}}</td>
+				<td>{{ teacher.civility|trans }}</td>
+			</tr>
+			<tr>
+				<td>{{'teacher.firstName'|trans}}</td>
+				<td>{{ teacher.firstName }}</td>
+			</tr>
+			<tr>
+				<td>{{'teacher.lastName'|trans}}</td>
+				<td>{{ teacher.lastName }}</td>
+			</tr>
+			<tr>
+				<td>{{'teacher.phone'|trans}}</td>
+				<td>{{ teacher.phone }}</td>
+			</tr>
+			<tr>
+				<td>{{'teacher.email'|trans}}</td>
+				<td>{{ teacher.email }}</td>
+			</tr>
+			<tr>
+				<td>{{'general.createdAt'|trans}}</td>
+				<td>{{ teacher.createdAt|date("d-m-Y H:i:s") }}</td>
+			</tr>
+			<tr>
+				<td>{{'general.updatedAt'|trans}}</td>
+				<td>{{ teacher.updatedAt|date("d-m-Y H:i:s") }}</td>
+			</tr>
+		</tbody>
+	</table>
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}
